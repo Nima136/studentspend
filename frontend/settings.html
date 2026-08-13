@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Settings - StudentSpend</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/settings.css">
+</head>
+
+<body>
+
+    <div class="settings-page">
+
+        <header class="settings-header">
+
+            <div>
+                <p class="settings-label">ACCOUNT</p>
+                <h1>Settings</h1>
+                <p class="settings-subtitle">
+                    Manage your StudentSpend account and preferences.
+                </p>
+            </div>
+
+            <a href="dashboard.html" class="back-button">
+                ← Dashboard
+            </a>
+
+        </header>
+
+
+        <main class="settings-container">
+
+            <!-- PROFILE -->
+
+            <section class="settings-card">
+
+                <div class="card-heading">
+                    <div class="card-icon">👤</div>
+
+                    <div>
+                        <h2>Profile</h2>
+                        <p>Your personal information</p>
+                    </div>
+                </div>
+
+
+                <div class="profile-display">
+
+                    <div class="large-avatar" id="profileAvatar">
+                        U
+                    </div>
+
+                    <div>
+                        <h3 id="profileDisplayName">
+                            User
+                        </h3>
+
+                        <p id="profileDisplayEmail">
+                            email@example.com
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Your name"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Your email"
+                            disabled
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="college">
+                            College
+                        </label>
+
+                        <input
+                            type="text"
+                            id="college"
+                            placeholder="Your college"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="save-button"
+                    id="saveProfileButton"
+                >
+                    Save Changes
+                </button>
+
+            </section>
+
+
+            <!-- BUDGET -->
+
+            <section class="settings-card">
+
+                <div class="card-heading">
+
+                    <div class="card-icon">💰</div>
+
+                    <div>
+                        <h2>Monthly Budget</h2>
+                        <p>Set your default monthly spending limit</p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="monthlyBudget">
+                        Monthly Budget
+                    </label>
+
+                    <div class="currency-input">
+
+                        <span>₹</span>
+
+                        <input
+                            type="number"
+                            id="monthlyBudget"
+                            min="0"
+                            placeholder="15000"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="save-button"
+                    id="saveBudgetButton"
+                >
+                    Update Budget
+                </button>
+
+            </section>
+
+
+            <!-- APPEARANCE -->
+
+            <section class="settings-card">
+
+                <div class="card-heading">
+
+                    <div class="card-icon">🎨</div>
+
+                    <div>
+                        <h2>Appearance</h2>
+                        <p>Customize how StudentSpend looks</p>
+                    </div>
+
+                </div>
+
+
+                <div class="appearance-options">
+
+                    <button
+                        class="theme-option active"
+                        data-theme="light"
+                    >
+                        <span class="theme-preview light-preview"></span>
+
+                        <div>
+                            <strong>Light</strong>
+                            <small>Clean and bright</small>
+                        </div>
+
+                    </button>
+
+
+                    <button
+                        class="theme-option"
+                        data-theme="dark"
+                    >
+                        <span class="theme-preview dark-preview"></span>
+
+                        <div>
+                            <strong>Dark</strong>
+                            <small>Easy on the eyes</small>
+                        </div>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- ACCOUNT -->
+
+            <section class="settings-card danger-card">
+
+                <div class="card-heading">
+
+                    <div class="card-icon">🔐</div>
+
+                    <div>
+                        <h2>Account</h2>
+                        <p>Manage your StudentSpend session</p>
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="logout-button"
+                    id="logoutButton"
+                >
+                    Log Out
+                </button>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="js/settings.js"></script>
+
+</body>
+
+</html>
