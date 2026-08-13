@@ -341,3 +341,88 @@
     }
 
 }
+
+/* ==========================
+   DARK MODE
+========================== */
+
+body.dark-mode {
+    background: #121212;
+    color: #f5f5f5;
+}
+
+body.dark-mode .settings-card {
+    background: #1e1e1e;
+    border-color: #333;
+    box-shadow: none;
+}
+
+body.dark-mode .settings-header {
+    color: #f5f5f5;
+}
+
+body.dark-mode .settings-subtitle,
+body.dark-mode .settings-label,
+body.dark-mode .card-heading p {
+    color: #aaa;
+}
+
+body.dark-mode .card-icon {
+    background: #2a2a2a;
+}
+
+body.dark-mode .profile-display {
+    border-color: #333;
+}
+
+body.dark-mode .profile-display p {
+    color: #aaa;
+}
+
+body.dark-mode .form-group input {
+    background: #292929;
+    color: #f5f5f5;
+    border-color: #444;
+}
+
+body.dark-mode .form-group input:disabled {
+    background: #242424;
+    color: #888;
+}
+
+body.dark-mode .currency-input {
+    background: #292929;
+    border-color: #444;
+}
+
+body.dark-mode .currency-input input {
+    background: transparent;
+    color: #f5f5f5;
+}
+
+body.dark-mode .theme-option {
+    background: #1e1e1e;
+    color: #f5f5f5;
+    border-color: #444;
+}
+
+body.dark-mode .theme-option.active {
+    border-color: #fff;
+}
+
+body.dark-mode .back-button {
+    border-color: #444;
+}
+
+body.dark-mode .danger-card {
+    border-color: #533;
+}
+
+body.dark-mode .logout-button {
+    background: #1e1e1e;
+}
+
+body.dark-mode .save-button {
+    background: #f5f5f5;
+    color: #111;
+}

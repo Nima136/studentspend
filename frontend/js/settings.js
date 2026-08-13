@@ -210,93 +210,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // ==========================
-    // THEME
-    // ==========================
+// THEME
+// ==========================
 
-    document
-        .querySelectorAll(".theme-option")
-        .forEach(button => {
+const themeButtons =
+    document.querySelectorAll(".theme-option");
 
-            button.addEventListener(
-                "click",
-                () => {
+function applyTheme(theme) {
 
-                    document
-                        .querySelectorAll(
-                            ".theme-option"
-                        )
-                        .forEach(option => {
-                            option.classList.remove(
-                                "active"
-                            );
-                        });
-
-
-                    button.classList.add(
-                        "active"
-                    );
-
-
-                    const theme =
-                        button.dataset.theme;
-
-
-                    if (theme === "dark") {
-
-                        document.body.classList.add(
-                            "dark-mode"
-                        );
-
-                    } else {
-
-                        document.body.classList.remove(
-                            "dark-mode"
-                        );
-
-                    }
-
-
-                    localStorage.setItem(
-                        "studentSpendTheme",
-                        theme
-                    );
-
-                }
-            );
-
-        });
-
-
-    // ==========================
-    // LOAD THEME
-    // ==========================
-
-    const savedTheme =
-        localStorage.getItem(
-            "studentSpendTheme"
-        );
-
-
-    if (savedTheme === "dark") {
-
-        document.body.classList.add(
-            "dark-mode"
-        );
-
-        document
-            .querySelector(
-                '[data-theme="light"]'
-            )
-            .classList.remove("active");
-
-        document
-            .querySelector(
-                '[data-theme="dark"]'
-            )
-            .classList.add("active");
-
+    if (theme === "dark") {
+        document.body.classList.add("dark-mode");
+    } else {
+        document.body.classList.remove("dark-mode");
     }
 
+    localStorage.setItem(
+        "studentSpendTheme",
+        theme
+    );
+
+    themeButtons.forEach(button => {
+        button.classList.toggle(
+            "active",
+            button.dataset.theme === theme
+        );
+    });
+}
+
+
+themeButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const theme =
+            button.dataset.theme;
+
+        applyTheme(theme);
+
+    });
+
+});
+
+
+// ==========================
+// LOAD SAVED THEME
+// ==========================
+
+const savedTheme =
+    localStorage.getItem("studentSpendTheme")
+    || "light";
+
+applyTheme(savedTheme);
 
     // ==========================
     // LOGOUT
