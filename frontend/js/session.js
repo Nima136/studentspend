@@ -1,5 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const user = JSON.parse(localStorage.getItem("user"));
+    let user = null;
+
+    try {
+        user = JSON.parse(
+            localStorage.getItem("studentSpendUser") || "null"
+        );
+    } catch (error) {
+        console.error("Could not read logged-in user:", error);
+    }
 
     if (!user) return;
 
@@ -16,16 +24,15 @@ document.addEventListener("DOMContentLoaded", () => {
         welcomeName.textContent = userName;
     }
 
-    if (user) {
-        document.querySelectorAll(".profile-info strong")
-            .forEach(el => el.textContent = user.name || "Student");
+    document.querySelectorAll(".profile-info strong")
+        .forEach(el => {
+            el.textContent = userName;
+        });
 
-        document.querySelectorAll(".profile-avatar")
-            .forEach(el => {
-                el.textContent =
-                    (user.name || "S").charAt(0).toUpperCase();
-            });
-    }
+    document.querySelectorAll(".profile-avatar")
+        .forEach(el => {
+            el.textContent = userName.charAt(0).toUpperCase();
+        });
 
     document.querySelectorAll("a.logout").forEach(link => {
         link.addEventListener("click", event => {
