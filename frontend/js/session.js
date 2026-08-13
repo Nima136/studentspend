@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (welcomeName) {
         welcomeName.textContent = userName;
     }
-});
 
     if (user) {
         document.querySelectorAll(".profile-info strong")
