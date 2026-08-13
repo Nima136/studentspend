@@ -100,11 +100,31 @@ function updateReportsPage() {
             : 0;
 
 
-    updateSummaryCards(budget, spent, remaining, savingsRate, percentUsed);
+    updateSummaryCards(
+    budget,
+    spent,
+    remaining,
+    savingsRate,
+    percentUsed
+);
 
-    updateCategoryReport(expenses);
+updateCategoryReport(expenses);
 
-    updateHealthReport(budget, spent, remaining, savingsRate, percentUsed, expenses);
+updateHealthReport(
+    budget,
+    spent,
+    remaining,
+    savingsRate,
+    percentUsed,
+    expenses
+);
+
+updateInsights(
+    budget,
+    spent,
+    remaining,
+    expenses
+);
 
 }
 
@@ -355,6 +375,287 @@ function updateHealthReport(budget, spent, remaining, savingsRate, percentUsed, 
 
         dailyAverageEl.textContent =
             formatCurrency(Math.round(average));
+
+    }
+
+}
+// ==========================================
+// DYNAMIC INSIGHTS
+// ==========================================
+
+function updateInsights(
+    budget,
+    spent,
+    remaining,
+    expenses
+) {
+
+    const categoryIcon =
+        document.getElementById("insightCategoryIcon");
+
+    const categoryTitle =
+        document.getElementById("insightCategoryTitle");
+
+    const categoryText =
+        document.getElementById("insightCategoryText");
+
+
+    const budgetTitle =
+        document.getElementById("insightBudgetTitle");
+
+    const budgetText =
+        document.getElementById("insightBudgetText");
+
+
+    const dailyTitle =
+        document.getElementById("insightDailyTitle");
+
+    const dailyText =
+        document.getElementById("insightDailyText");
+
+
+    // ======================================
+    // NO EXPENSES
+    // ======================================
+
+    if (expenses.length === 0) {
+
+        if (categoryIcon) {
+            categoryIcon.textContent = "📊";
+        }
+
+        if (categoryTitle) {
+            categoryTitle.textContent =
+                "No spending data yet";
+        }
+
+        if (categoryText) {
+            categoryText.textContent =
+                "Add your first expense to start receiving personalized spending insights.";
+        }
+
+
+        if (budgetTitle) {
+            budgetTitle.textContent =
+                "Your budget is ready";
+        }
+
+        if (budgetText) {
+            budgetText.textContent =
+                `You have ${formatCurrency(budget)} available for this month.`;
+        }
+
+
+        if (dailyTitle) {
+            dailyTitle.textContent =
+                "Start tracking your spending";
+        }
+
+        if (dailyText) {
+            dailyText.textContent =
+                "Once you add expenses, we'll calculate your average daily spending and give you recommendations.";
+        }
+
+        return;
+    }
+
+
+    // ======================================
+    // BIGGEST CATEGORY
+    // ======================================
+
+    const totals =
+        getCategoryTotals(expenses);
+
+    const categories =
+        Object.keys(totals);
+
+
+    categories.sort(
+        (a, b) =>
+            totals[b] - totals[a]
+    );
+
+
+    const biggestCategory =
+        categories[0];
+
+    const biggestAmount =
+        totals[biggestCategory];
+
+
+    const categoryPercentage =
+        spent > 0
+            ? (biggestAmount / spent) * 100
+            : 0;
+
+
+    const emoji =
+        getCategoryEmoji(biggestCategory);
+
+
+    if (categoryIcon) {
+        categoryIcon.textContent = emoji;
+    }
+
+
+    if (categoryTitle) {
+
+        categoryTitle.textContent =
+            `${biggestCategory} is your biggest expense`;
+
+    }
+
+
+    if (categoryText) {
+
+        categoryText.textContent =
+            `You spent ${formatCurrency(biggestAmount)} on ${biggestCategory.toLowerCase()}, making up ${categoryPercentage.toFixed(1)}% of your total spending.`;
+
+    }
+
+
+    // ======================================
+    // BUDGET INSIGHT
+    // ======================================
+
+    const percentUsed =
+        budget > 0
+            ? (spent / budget) * 100
+            : 0;
+
+
+    if (budget <= 0) {
+
+        if (budgetTitle) {
+            budgetTitle.textContent =
+                "Set a monthly budget";
+        }
+
+        if (budgetText) {
+            budgetText.textContent =
+                "Set your monthly budget to receive more accurate spending recommendations.";
+        }
+
+    } else if (remaining < 0) {
+
+        if (budgetTitle) {
+            budgetTitle.textContent =
+                "You're over budget";
+        }
+
+        if (budgetText) {
+            budgetText.textContent =
+                `You've exceeded your monthly budget by ${formatCurrency(Math.abs(remaining))}. Consider reducing your spending for the rest of the month.`;
+        }
+
+    } else if (percentUsed >= 80) {
+
+        if (budgetTitle) {
+            budgetTitle.textContent =
+                "You're close to your budget limit";
+        }
+
+        if (budgetText) {
+            budgetText.textContent =
+                `You've used ${percentUsed.toFixed(1)}% of your budget and have ${formatCurrency(remaining)} remaining.`;
+        }
+
+    } else if (percentUsed >= 50) {
+
+        if (budgetTitle) {
+            budgetTitle.textContent =
+                "You're halfway through your budget";
+        }
+
+        if (budgetText) {
+            budgetText.textContent =
+                `You've used ${percentUsed.toFixed(1)}% of your monthly budget. You have ${formatCurrency(remaining)} remaining.`;
+        }
+
+    } else {
+
+        if (budgetTitle) {
+            budgetTitle.textContent =
+                "You're spending within your budget";
+        }
+
+        if (budgetText) {
+            budgetText.textContent =
+                `You've used ${percentUsed.toFixed(1)}% of your monthly budget and still have ${formatCurrency(remaining)} available.`;
+        }
+
+    }
+
+
+    // ======================================
+    // DAILY SPENDING
+    // ======================================
+
+    const averageExpense =
+        getAverageExpense(expenses);
+
+
+    const today =
+        new Date();
+
+
+    const daysInMonth =
+        new Date(
+            today.getFullYear(),
+            today.getMonth() + 1,
+            0
+        ).getDate();
+
+
+    const daysRemaining =
+        Math.max(
+            1,
+            daysInMonth - today.getDate() + 1
+        );
+
+
+    const recommendedDaily =
+        remaining > 0
+            ? remaining / daysRemaining
+            : 0;
+
+
+    if (remaining <= 0) {
+
+        if (dailyTitle) {
+            dailyTitle.textContent =
+                "Your spending needs attention";
+        }
+
+        if (dailyText) {
+            dailyText.textContent =
+                `Your average expense is ${formatCurrency(Math.round(averageExpense))}. You've used your entire available budget, so consider limiting non-essential spending.`;
+        }
+
+    } else if (averageExpense > recommendedDaily) {
+
+        if (dailyTitle) {
+            dailyTitle.textContent =
+                "Your spending pace is high";
+        }
+
+        if (dailyText) {
+            dailyText.textContent =
+                `Your average transaction is ${formatCurrency(Math.round(averageExpense))}. Your remaining budget allows about ${formatCurrency(Math.round(recommendedDaily))} per day for the rest of the month.`;
+        }
+
+    } else {
+
+        if (dailyTitle) {
+            dailyTitle.textContent =
+                "You're maintaining a good spending pace";
+        }
+
+        if (dailyText) {
+            dailyText.textContent =
+                `Your average transaction is ${formatCurrency(Math.round(averageExpense))}. You can spend about ${formatCurrency(Math.round(recommendedDaily))} per day for the rest of the month and stay within budget.`;
+        }
 
     }
 
