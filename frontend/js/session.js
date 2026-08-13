@@ -1,26 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const token = localStorage.getItem("studentSpendToken");
+    const user = JSON.parse(localStorage.getItem("user"));
 
-    const protectedPage = ![
-        "login.html",
-        "register.html",
-        "index.html"
-    ].some(name => location.pathname.endsWith(name));
+    if (!user) return;
 
-    if (protectedPage && !token) {
-        location.href = "login.html";
-        return;
+    const userName = user.name || user.username || "User";
+
+    const profileName = document.getElementById("profileName");
+    const welcomeName = document.getElementById("welcomeName");
+
+    if (profileName) {
+        profileName.textContent = userName;
     }
 
-    const user = (() => {
-        try {
-            return JSON.parse(
-                localStorage.getItem("studentSpendUser") || "null"
-            );
-        } catch {
-            return null;
-        }
-    })();
+    if (welcomeName) {
+        welcomeName.textContent = userName;
+    }
+});
 
     if (user) {
         document.querySelectorAll(".profile-info strong")
