@@ -1,0 +1,343 @@
+.settings-page {
+    min-height: 100vh;
+    padding: 40px;
+}
+
+.settings-header {
+    max-width: 1000px;
+    margin: 0 auto 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.settings-label {
+    margin: 0 0 6px;
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    opacity: 0.6;
+}
+
+.settings-header h1 {
+    margin: 0;
+
+    font-size: 36px;
+}
+
+.settings-subtitle {
+    margin-top: 8px;
+
+    opacity: 0.65;
+}
+
+.back-button {
+    text-decoration: none;
+
+    padding: 11px 18px;
+
+    border-radius: 10px;
+
+    border: 1px solid #ddd;
+
+    color: inherit;
+
+    font-weight: 600;
+}
+
+.settings-container {
+    max-width: 1000px;
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.settings-card {
+    background: white;
+
+    border: 1px solid #e8e8e8;
+
+    border-radius: 18px;
+
+    padding: 28px;
+
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+}
+
+.card-heading {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 25px;
+}
+
+.card-heading h2 {
+    margin: 0;
+
+    font-size: 20px;
+}
+
+.card-heading p {
+    margin: 4px 0 0;
+
+    font-size: 14px;
+
+    opacity: 0.6;
+}
+
+.card-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #f4f4f4;
+
+    font-size: 21px;
+}
+
+.profile-display {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+
+    padding-bottom: 25px;
+
+    border-bottom: 1px solid #eee;
+}
+
+.large-avatar {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #111;
+    color: white;
+
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.profile-display h3 {
+    margin: 0;
+
+    font-size: 20px;
+}
+
+.profile-display p {
+    margin: 4px 0 0;
+
+    opacity: 0.6;
+}
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 13px 14px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: #111;
+}
+
+.form-group input:disabled {
+    background: #f5f5f5;
+
+    cursor: not-allowed;
+}
+
+.save-button {
+    margin-top: 22px;
+
+    padding: 12px 20px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #111;
+    color: white;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.currency-input {
+    display: flex;
+    align-items: center;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    padding-left: 14px;
+}
+
+.currency-input span {
+    font-weight: 700;
+}
+
+.currency-input input {
+    border: none;
+
+    flex: 1;
+}
+
+.currency-input input:focus {
+    border: none;
+}
+
+.appearance-options {
+    display: flex;
+
+    gap: 15px;
+}
+
+.theme-option {
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 16px;
+
+    border: 2px solid #eee;
+
+    border-radius: 12px;
+
+    background: white;
+
+    cursor: pointer;
+
+    text-align: left;
+}
+
+.theme-option.active {
+    border-color: #111;
+}
+
+.theme-preview {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 8px;
+
+    border: 1px solid #ddd;
+}
+
+.light-preview {
+    background: white;
+}
+
+.dark-preview {
+    background: #222;
+}
+
+.theme-option strong {
+    display: block;
+}
+
+.theme-option small {
+    display: block;
+
+    margin-top: 3px;
+
+    opacity: 0.55;
+}
+
+.danger-card {
+    border-color: #f0dede;
+}
+
+.logout-button {
+    padding: 12px 22px;
+
+    border: 1px solid #d9534f;
+
+    border-radius: 10px;
+
+    background: white;
+
+    color: #d9534f;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background: #fff5f5;
+}
+
+@media (max-width: 700px) {
+
+    .settings-page {
+        padding: 20px;
+    }
+
+    .settings-header {
+        flex-direction: column;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .appearance-options {
+        flex-direction: column;
+    }
+
+}
