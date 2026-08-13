@@ -5,7 +5,7 @@
 // and a short-lived UI cache.
 // ==========================================
 
-const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = "https://studentspend-production.up.railway.app";
 const STORAGE_KEY = "studentSpendData";
 const TOKEN_KEY = "studentSpendToken";
 const USER_KEY = "studentSpendUser";
