@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Expenses | StudentSpend</title>
+
+    <link rel="stylesheet" href="css/expenses.css">
+
+</head>
+
+<body>
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            Student<span>Spend</span>
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html" class="nav-item">
+                <span>▦</span>
+                Dashboard
+            </a>
+
+            <a href="expenses.html" class="nav-item active">
+                <span>↔</span>
+                Expenses
+            </a>
+
+            <a href="budget.html" class="nav-item">
+                <span>◎</span>
+                Budget
+            </a>
+
+            <a href="reports.html" class="nav-item">
+                <span>▥</span>
+                Reports
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="#" class="nav-item">
+                <span>⚙</span>
+                Settings
+            </a>
+
+            <a href="index.html" class="nav-item logout">
+                <span>↪</span>
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <button class="mobile-menu" id="mobileMenu">
+                ☰
+            </button>
+
+
+            <div class="topbar-right">
+
+                <button class="notification-button">
+                    🔔
+                </button>
+
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+                        N
+                    </div>
+
+                    <div class="profile-info">
+
+                        <strong>Nimay</strong>
+
+                        <small>Student</small>
+
+                    </div>
+
+                    <span class="profile-arrow">
+                        ▼
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PAGE CONTENT -->
+
+        <div class="page-content">
+
+
+            <!-- PAGE HEADER -->
+
+            <section class="page-header">
+
+                <div>
+
+                    <p class="date-text">
+                        AUGUST 2026
+                    </p>
+
+                    <h1>
+                        Expenses
+                    </h1>
+
+                    <p>
+                        Keep track of where your money goes.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="add-expense-button"
+                    id="openExpenseForm"
+                >
+                    + Add Expense
+                </button>
+
+            </section>
+
+
+            <!-- SUMMARY -->
+
+            <section class="expense-summary">
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon blue">
+                        ₹
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Total Spent
+                        </p>
+
+                        <h2 id="totalSpent">
+                            ₹8,450
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon red">
+                        ↓
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Transactions
+                        </p>
+
+                        <h2 id="transactionCount">
+                            27
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon green">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Average Expense
+                        </p>
+
+                        <h2 id="averageExpense">
+                            ₹313
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- ADD EXPENSE FORM -->
+
+            <section
+                class="expense-form-card"
+                id="expenseFormCard"
+            >
+
+                <div class="card-title">
+
+                    <div>
+
+                        <h2>
+                            Add New Expense
+                        </h2>
+
+                        <p>
+                            Record a new transaction.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <form id="expenseForm">
+
+
+                    <div class="form-grid">
+
+
+                        <!-- AMOUNT -->
+
+                        <div class="form-group">
+
+                            <label for="amount">
+                                Amount
+                            </label>
+
+                            <div class="amount-input">
+
+                                <span>₹</span>
+
+                                <input
+                                    type="number"
+                                    id="amount"
+                                    placeholder="0.00"
+                                    min="1"
+                                    step="0.01"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- CATEGORY -->
+
+                        <div class="form-group">
+
+                            <label for="category">
+                                Category
+                            </label>
+
+                            <select
+                                id="category"
+                                required
+                            >
+
+                                <option value="">
+                                    Select category
+                                </option>
+
+                                <option value="Food">
+                                    🍔 Food
+                                </option>
+
+                                <option value="Transport">
+                                    🚗 Transport
+                                </option>
+
+                                <option value="Education">
+                                    📚 Education
+                                </option>
+
+                                <option value="Shopping">
+                                    🛒 Shopping
+                                </option>
+
+                                <option value="Entertainment">
+                                    🎮 Entertainment
+                                </option>
+
+                                <option value="Bills">
+                                    💡 Bills
+                                </option>
+
+                                <option value="Health">
+                                    💊 Health
+                                </option>
+
+                                <option value="Other">
+                                    📦 Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- DATE -->
+
+                        <div class="form-group">
+
+                            <label for="expenseDate">
+                                Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="expenseDate"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- DESCRIPTION -->
+
+                        <div class="form-group">
+
+                            <label for="description">
+                                Description
+                            </label>
+
+                            <input
+                                type="text"
+                                id="description"
+                                placeholder="e.g. Lunch at college"
+                                maxlength="255"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="button"
+                            class="cancel-button"
+                            id="cancelExpense"
+                        >
+                            Cancel
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="save-button"
+                        >
+                            Save Expense
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- EXPENSE LIST -->
+
+            <section class="expenses-card">
+
+
+                <!-- HEADER -->
+
+                <div class="expenses-card-header">
+
+                    <div>
+
+                        <h2>
+                            All Expenses
+                        </h2>
+
+                        <p>
+                            Your recent transactions
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FILTERS -->
+
+                <div class="filters">
+
+
+                    <div class="search-box">
+
+                        <span>
+                            🔍
+                        </span>
+
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Search expenses..."
+                        >
+
+                    </div>
+
+
+                    <select id="categoryFilter">
+
+                        <option value="all">
+                            All Categories
+                        </option>
+
+                        <option value="Food">
+                            Food
+                        </option>
+
+                        <option value="Transport">
+                            Transport
+                        </option>
+
+                        <option value="Education">
+                            Education
+                        </option>
+
+                        <option value="Shopping">
+                            Shopping
+                        </option>
+
+                        <option value="Entertainment">
+                            Entertainment
+                        </option>
+
+                        <option value="Bills">
+                            Bills
+                        </option>
+
+                        <option value="Health">
+                            Health
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+
+                    <select id="dateFilter">
+
+                        <option value="all">
+                            All Dates
+                        </option>
+
+                        <option value="today">
+                            Today
+                        </option>
+
+                        <option value="week">
+                            This Week
+                        </option>
+
+                        <option value="month">
+                            This Month
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- TABLE -->
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Expense
+                                </th>
+
+                                <th>
+                                    Category
+                                </th>
+
+                                <th>
+                                    Date
+                                </th>
+
+                                <th>
+                                    Amount
+                                </th>
+
+                                <th>
+                                    Actions
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="expenseTableBody">
+
+
+                            <!-- FOOD -->
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="expense-name">
+
+                                        <div class="expense-icon food">
+                                            🍔
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Lunch
+                                            </strong>
+
+                                            <small>
+                                                College canteen
+                                            </small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span class="category-badge food-badge">
+                                        Food
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+                                    Aug 12, 2026
+                                </td>
+
+
+                                <td class="amount">
+                                    -₹250
+                                </td>
+
+
+                                <td>
+
+                                    <div class="actions">
+
+                                        <button
+                                            class="edit-button"
+                                            title="Edit"
+                                        >
+                                            ✎
+                                        </button>
+
+                                        <button
+                                            class="delete-button"
+                                            title="Delete"
+                                        >
+                                            🗑
+                                        </button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- TRANSPORT -->
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="expense-name">
+
+                                        <div class="expense-icon transport">
+                                            🚗
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Petrol
+                                            </strong>
+
+                                            <small>
+                                                Bike fuel
+                                            </small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span class="category-badge transport-badge">
+                                        Transport
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+                                    Aug 11, 2026
+                                </td>
+
+
+                                <td class="amount">
+                                    -₹500
+                                </td>
+
+
+                                <td>
+
+                                    <div class="actions">
+
+                                        <button class="edit-button">
+                                            ✎
+                                        </button>
+
+                                        <button class="delete-button">
+                                            🗑
+                                        </button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- EDUCATION -->
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="expense-name">
+
+                                        <div class="expense-icon education">
+                                            📚
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Engineering Books
+                                            </strong>
+
+                                            <small>
+                                                Semester books
+                                            </small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span class="category-badge education-badge">
+                                        Education
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+                                    Aug 9, 2026
+                                </td>
+
+
+                                <td class="amount">
+                                    -₹700
+                                </td>
+
+
+                                <td>
+
+                                    <div class="actions">
+
+                                        <button class="edit-button">
+                                            ✎
+                                        </button>
+
+                                        <button class="delete-button">
+                                            🗑
+                                        </button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- SHOPPING -->
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="expense-name">
+
+                                        <div class="expense-icon shopping">
+                                            🛒
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Essentials
+                                            </strong>
+
+                                            <small>
+                                                Personal items
+                                            </small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span class="category-badge shopping-badge">
+                                        Shopping
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+                                    Aug 8, 2026
+                                </td>
+
+
+                                <td class="amount">
+                                    -₹450
+                                </td>
+
+
+                                <td>
+
+                                    <div class="actions">
+
+                                        <button class="edit-button">
+                                            ✎
+                                        </button>
+
+                                        <button class="delete-button">
+                                            🗑
+                                        </button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- ENTERTAINMENT -->
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="expense-name">
+
+                                        <div class="expense-icon entertainment">
+                                            🎮
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Movie
+                                            </strong>
+
+                                            <small>
+                                                Weekend movie
+                                            </small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span class="category-badge entertainment-badge">
+                                        Entertainment
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+                                    Aug 7, 2026
+                                </td>
+
+
+                                <td class="amount">
+                                    -₹350
+                                </td>
+
+
+                                <td>
+
+                                    <div class="actions">
+
+                                        <button class="edit-button">
+                                            ✎
+                                        </button>
+
+                                        <button class="delete-button">
+                                            🗑
+                                        </button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- EMPTY STATE -->
+
+                <div
+                    class="empty-state"
+                    id="emptyState"
+                >
+
+                    <div>
+                        💸
+                    </div>
+
+                    <h3>
+                        No expenses found
+                    </h3>
+
+                    <p>
+                        Try changing your search or filters.
+                    </p>
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- EDIT EXPENSE MODAL -->
+<div class="edit-modal" id="editExpenseModal" aria-hidden="true">
+    <div class="edit-modal-backdrop" id="editModalBackdrop"></div>
+    <div class="edit-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="editExpenseTitle">
+        <div class="edit-modal-header">
+            <div>
+                <span class="edit-modal-eyebrow">TRANSACTION</span>
+                <h2 id="editExpenseTitle">Edit Expense</h2>
+                <p>Update the details of this expense.</p>
+            </div>
+            <button type="button" class="edit-modal-close" id="closeEditModal" aria-label="Close">&times;</button>
+        </div>
+
+        <form id="editExpenseForm" class="edit-modal-form">
+            <div class="edit-modal-grid">
+                <div class="form-group">
+                    <label for="editAmount">Amount</label>
+                    <div class="amount-input">
+                        <span>₹</span>
+                        <input type="number" id="editAmount" min="0.01" step="0.01" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="editCategory">Category</label>
+                    <select id="editCategory" required>
+                        <option value="Food">🍔 Food</option>
+                        <option value="Transport">🚗 Transport</option>
+                        <option value="Shopping">🛍️ Shopping</option>
+                        <option value="Entertainment">🎬 Entertainment</option>
+                        <option value="Education">📚 Education</option>
+                        <option value="Bills">💳 Bills</option>
+                        <option value="Health">💊 Health</option>
+                        <option value="Other">📦 Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="editDate">Date</label>
+                    <input type="date" id="editDate" required>
+                </div>
+
+                <div class="form-group edit-modal-full">
+                    <label for="editDescription">Description</label>
+                    <input type="text" id="editDescription" maxlength="255" placeholder="What was this expense for?">
+                </div>
+            </div>
+
+            <div class="edit-modal-actions">
+                <button type="button" class="edit-cancel-button" id="cancelEditModal">Cancel</button>
+                <button type="submit" class="edit-save-button" id="saveEditModal">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/expenses.js"></script>
+
+<script src="js/session.js"></script>
+</body>
+
+</html>

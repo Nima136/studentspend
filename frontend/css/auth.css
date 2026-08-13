@@ -1,0 +1,462 @@
+/* ================================
+   AUTH PAGE
+================================ */
+
+.auth-page {
+
+    min-height: 100vh;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    background: white;
+
+}
+
+
+/* ================================
+   LEFT SIDE
+================================ */
+
+.auth-info {
+
+    background: #111827;
+
+    color: white;
+
+    padding: 45px 8%;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.auth-logo {
+
+    font-size: 25px;
+
+    font-weight: 800;
+
+    letter-spacing: -1px;
+
+    text-decoration: none;
+
+}
+
+
+.auth-logo span {
+
+    color: #60a5fa;
+
+}
+
+
+.auth-info-content {
+
+    margin: auto 0;
+
+    max-width: 500px;
+
+}
+
+
+.auth-label {
+
+    color: #60a5fa;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.auth-info-content h1 {
+
+    font-size: 55px;
+
+    line-height: 1.05;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.auth-info-content > p:last-child {
+
+    color: #9ca3af;
+
+    font-size: 17px;
+
+    max-width: 450px;
+
+}
+
+
+/* ================================
+   RIGHT SIDE
+================================ */
+
+.auth-container {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 50px;
+
+}
+
+
+.auth-card {
+
+    width: 100%;
+
+    max-width: 430px;
+
+}
+
+
+.auth-heading {
+
+    margin-bottom: 35px;
+
+}
+
+
+.auth-heading h2 {
+
+    font-size: 32px;
+
+    letter-spacing: -1px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.auth-heading p {
+
+    color: #6b7280;
+
+    font-size: 15px;
+
+}
+
+
+/* ================================
+   FORM
+================================ */
+
+.form-group {
+
+    margin-bottom: 20px;
+
+}
+
+
+.form-group label {
+
+    display: block;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    margin-bottom: 8px;
+
+}
+
+
+.form-group input {
+
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 14px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.2s;
+
+}
+
+
+.form-group input:focus {
+
+    border-color: #2563eb;
+
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+
+}
+
+
+.form-group input::placeholder {
+
+    color: #9ca3af;
+
+}
+
+
+/* ================================
+   LABEL ROW
+================================ */
+
+.label-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+
+.label-row a {
+
+    font-size: 13px;
+
+    color: #2563eb;
+
+    font-weight: 600;
+
+}
+
+
+/* ================================
+   FORM ROW
+================================ */
+
+.form-row {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+
+}
+
+
+/* ================================
+   RUPEE INPUT
+================================ */
+
+.input-with-symbol {
+
+    position: relative;
+
+}
+
+
+.input-with-symbol span {
+
+    position: absolute;
+
+    left: 14px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-weight: 700;
+
+    color: #6b7280;
+
+}
+
+
+.input-with-symbol input {
+
+    padding-left: 32px;
+
+}
+
+
+/* ================================
+   BUTTON
+================================ */
+
+.auth-button {
+
+    width: 100%;
+
+    height: 50px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.auth-button:hover {
+
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+
+}
+
+
+/* ================================
+   DIVIDER
+================================ */
+
+.auth-divider {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin: 25px 0;
+
+    color: #9ca3af;
+
+    font-size: 12px;
+
+}
+
+
+.auth-divider::before,
+.auth-divider::after {
+
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background: #e5e7eb;
+
+}
+
+
+/* ================================
+   SWITCH
+================================ */
+
+.auth-switch {
+
+    text-align: center;
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+}
+
+
+.auth-switch a {
+
+    color: #2563eb;
+
+    font-weight: 700;
+
+}
+
+
+/* ================================
+   MOBILE LOGO
+================================ */
+
+.mobile-logo {
+
+    display: none;
+
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 850px) {
+
+    .auth-page {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .auth-info {
+
+        display: none;
+
+    }
+
+
+    .auth-container {
+
+        min-height: 100vh;
+
+        padding: 30px 20px;
+
+        align-items: center;
+
+    }
+
+
+    .mobile-logo {
+
+        display: block;
+
+        margin-bottom: 50px;
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .form-row {
+
+        grid-template-columns: 1fr;
+
+        gap: 0;
+
+    }
+
+
+    .auth-heading h2 {
+
+        font-size: 28px;
+
+    }
+
+}
