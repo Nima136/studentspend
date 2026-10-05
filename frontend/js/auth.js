@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://studentspend-production.up.railway.app";
+const API_BASE_URL = "https://studentspend-api-qn7e.onrender.com";
 const TOKEN_KEY = "studentSpendToken";
 const USER_KEY = "studentSpendUser";
 const STORAGE_KEY = "studentSpendData";
