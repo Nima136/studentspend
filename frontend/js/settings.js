@@ -1,4 +1,12 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+
+    if (!requireSession()) return;
+
+    try {
+        await loadRemoteData();
+    } catch (error) {
+        console.error("Could not refresh profile data:", error);
+    }
 
     let user = null;
 
@@ -94,15 +102,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             try {
 
-                /*
-                 * This will be connected to
-                 * the backend profile endpoint.
-                 */
+                const payload = await apiFetch("/api/profile", {
+                    method: "PUT",
+                    body: JSON.stringify({ name, college })
+                });
 
-                user.name = name;
-                user.college = college;
-
-
+                user = { ...user, ...payload.user };
                 localStorage.setItem(
                     "studentSpendUser",
                     JSON.stringify(user)
@@ -151,38 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             try {
 
-                const token =
-                    localStorage.getItem(
-                        "studentSpendToken"
-                    );
-
-
-                const response =
-                    await fetch(
-                        "https://studentspend-production.up.railway.app/api/budget",
-                        {
-                            method: "PUT",
-
-                            headers: {
-                                "Content-Type":
-                                    "application/json",
-
-                                "Authorization":
-                                    `Bearer ${token}`
-                            },
-
-                            body: JSON.stringify({
-                                budget
-                            })
-                        }
-                    );
-
-
-                if (!response.ok) {
-                    throw new Error(
-                        "Budget update failed."
-                    );
-                }
+                await setBudget(budget);
 
 
                 user.monthly_budget = budget;

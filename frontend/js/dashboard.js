@@ -3,6 +3,8 @@
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("[data-current-month]").forEach(el => el.textContent = formatMonthYear());
+    document.querySelectorAll("[data-current-month-uppercase]").forEach(el => el.textContent = formatMonthYear(new Date(), { uppercase: true }));
 
     // ======================================
     // MOBILE MENU
@@ -38,6 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateDashboard();
 
+    const chartPeriod = document.getElementById("chartPeriod");
+    if (chartPeriod) {
+        chartPeriod.addEventListener("change", updateDashboard);
+    }
 
     // ======================================
     // RE-RENDER IF DATA CHANGES
@@ -60,7 +66,8 @@ function updateDashboard() {
 
     const data = getData();
 
-    const expenses = data.expenses || [];
+    const allExpenses = data.expenses || [];
+    const expenses = getExpensesForMonth(allExpenses);
     const budget = Number(data.budget) || 0;
 
     const totalSpent = getTotalSpent(expenses);
@@ -75,6 +82,12 @@ function updateDashboard() {
     // ======================================
     // SUMMARY CARDS
     // ======================================
+
+    const dashboardDate = document.getElementById("dashboardDate");
+    if (dashboardDate) dashboardDate.textContent = formatMonthYear();
+
+    const budgetMonth = document.getElementById("budgetMonth");
+    if (budgetMonth) budgetMonth.textContent = formatMonthYear();
 
     const balanceAmount =
         document.getElementById("balanceAmount");
@@ -143,7 +156,11 @@ function updateDashboard() {
     // CATEGORY CHART
     // ======================================
 
-    updateCategoryChart(expenses);
+    const chartPeriod = document.getElementById("chartPeriod");
+    const chartExpenses = chartPeriod && chartPeriod.value === "last"
+        ? getExpensesForMonth(allExpenses, getMonthKeyOffset(-1))
+        : expenses;
+    updateCategoryChart(chartExpenses);
 
 
     // ======================================

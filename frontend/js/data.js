@@ -17,6 +17,33 @@ const emptyData = {
     expenses: []
 };
 
+function getMonthKey(date = new Date()) {
+    const d = date instanceof Date ? date : new Date(date);
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+}
+
+function formatMonthYear(date = new Date(), { uppercase = false } = {}) {
+    const d = date instanceof Date ? date : new Date(date);
+    const label = d.toLocaleDateString("en-IN", { month: "long", year: "numeric" });
+    return uppercase ? label.toUpperCase() : label;
+}
+
+function getExpensesForMonth(expenses = getData().expenses, monthKey = getMonthKey()) {
+    return (expenses || []).filter(expense => String(expense.date || "").slice(0, 7) === monthKey);
+}
+
+function getMonthKeyOffset(offset = 0, fromDate = new Date()) {
+    const d = fromDate instanceof Date ? new Date(fromDate) : new Date(fromDate);
+    d.setDate(1);
+    d.setMonth(d.getMonth() + offset);
+    return getMonthKey(d);
+}
+
+function parseMonthKey(monthKey) {
+    const [year, month] = String(monthKey).split("-").map(Number);
+    return new Date(year, month - 1, 1);
+}
+
 function getToken() {
     return localStorage.getItem(TOKEN_KEY);
 }

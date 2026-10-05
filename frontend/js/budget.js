@@ -4,7 +4,11 @@
 // SAME storage as Dashboard, Expenses, and Reports.
 // ==========================================
 
+let budgetViewMonthKey = getMonthKey();
+
 document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("[data-current-month]").forEach(el => el.textContent = formatMonthYear());
+    document.querySelectorAll("[data-current-month-uppercase]").forEach(el => el.textContent = formatMonthYear(new Date(), { uppercase: true }));
 
     // ======================================
     // MOBILE MENU
@@ -33,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ======================================
 
     updateBudgetPage();
+    wireMonthNavigation();
 
 
     // ======================================
@@ -57,11 +62,54 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+function wireMonthNavigation() {
+    const previousButton = document.getElementById("previousMonth");
+    const nextButton = document.getElementById("nextMonth");
+
+    if (previousButton) {
+        previousButton.addEventListener("click", () => {
+            budgetViewMonthKey = getMonthKeyOffset(-1, parseMonthKey(budgetViewMonthKey));
+            updateBudgetPage();
+        });
+    }
+
+    if (nextButton) {
+        nextButton.addEventListener("click", () => {
+            const current = getMonthKey();
+            if (budgetViewMonthKey < current) {
+                budgetViewMonthKey = getMonthKeyOffset(1, parseMonthKey(budgetViewMonthKey));
+                updateBudgetPage();
+            }
+        });
+    }
+
+    updateMonthNavigationState();
+}
+
+function updateMonthNavigationState() {
+    const nextButton = document.getElementById("nextMonth");
+    if (nextButton) {
+        nextButton.disabled = budgetViewMonthKey === getMonthKey();
+        nextButton.setAttribute("aria-disabled", String(nextButton.disabled));
+    }
+}
+
 // ==========================================
 // UPDATE BUDGET PAGE
 // ==========================================
 
 function updateBudgetPage() {
+
+    const viewedDate = parseMonthKey(budgetViewMonthKey);
+    const isCurrentMonth = budgetViewMonthKey === getMonthKey();
+
+    const monthLabel = document.getElementById("currentMonth");
+    if (monthLabel) monthLabel.textContent = formatMonthYear(viewedDate);
+
+    const pageDate = document.querySelector(".page-header .date-text");
+    if (pageDate) pageDate.textContent = formatMonthYear(viewedDate, { uppercase: true });
+
+    updateMonthNavigationState();
 
     const data =
         getData();
@@ -72,7 +120,7 @@ function updateBudgetPage() {
 
 
     const expenses =
-        data.expenses || [];
+        getExpensesForMonth(data.expenses || [], budgetViewMonthKey);
 
 
     const spent =
@@ -183,13 +231,16 @@ function updateBudgetPage() {
                 ).getDate() - today.getDate() + 1
             );
 
-        const dailyAmount =
-            remaining > 0
-                ? remaining / daysLeft
-                : 0;
-
-        dailyBudgetElement.textContent =
-            formatCurrency(Math.round(dailyAmount)) + "/day";
+        if (!isCurrentMonth) {
+            dailyBudgetElement.textContent = "Current month only";
+        } else {
+            const dailyAmount =
+                remaining > 0
+                    ? remaining / daysLeft
+                    : 0;
+            dailyBudgetElement.textContent =
+                formatCurrency(Math.round(dailyAmount)) + "/day";
+        }
 
     }
 
@@ -199,6 +250,19 @@ function updateBudgetPage() {
     // ======================================
 
     updateBudgetCategories(expenses);
+
+    const tip = document.getElementById("budgetTip");
+    if (tip) {
+        if (!expenses.length) {
+            tip.textContent = "Add expenses to receive a personalized spending tip.";
+        } else {
+            const totals = getCategoryTotals(expenses);
+            const topCategory = Object.keys(totals).sort((a, b) => totals[b] - totals[a])[0];
+            const topAmount = totals[topCategory] || 0;
+            const share = spent > 0 ? (topAmount / spent) * 100 : 0;
+            tip.textContent = `${topCategory} is your largest spending category at ${formatCurrency(topAmount)} (${share.toFixed(1)}% of this month's spending).`;
+        }
+    }
 
 }
 

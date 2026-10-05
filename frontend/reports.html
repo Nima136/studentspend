@@ -1,922 +1,331 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Reports | StudentSpend</title>
-
-    <link rel="stylesheet" href="css/reports.css">
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reports | StudentSpend</title>
+<link href="css/reports.css" rel="stylesheet"/>
 </head>
-
-
 <body>
-
-
-    <!-- ================================
+<!-- ================================
          SIDEBAR
     ================================= -->
-
-    <aside class="sidebar">
-
-        <div class="sidebar-logo">
+<aside class="sidebar">
+<div class="sidebar-logo">
             Student<span>Spend</span>
-        </div>
-
-
-        <nav class="sidebar-nav">
-
-            <a href="dashboard.html" class="nav-item">
-                <span>▦</span>
+</div>
+<nav class="sidebar-nav">
+<a class="nav-item" href="dashboard.html">
+<span>▦</span>
                 Dashboard
             </a>
-
-
-            <a href="expenses.html" class="nav-item">
-                <span>↔</span>
+<a class="nav-item" href="expenses.html">
+<span>↔</span>
                 Expenses
             </a>
-
-
-            <a href="budget.html" class="nav-item">
-                <span>◎</span>
+<a class="nav-item" href="budget.html">
+<span>◎</span>
                 Budget
             </a>
-
-
-            <a href="reports.html" class="nav-item active">
-                <span>▥</span>
+<a class="nav-item active" href="reports.html">
+<span>▥</span>
                 Reports
             </a>
-
-        </nav>
-
-
-        <div class="sidebar-bottom">
-
-            <a href="#" class="nav-item">
-                <span>⚙</span>
+</nav>
+<div class="sidebar-bottom">
+<a class="nav-item" href="settings.html">
+<span>⚙</span>
                 Settings
             </a>
-
-
-            <a href="index.html" class="nav-item logout">
-                <span>↪</span>
+<a class="nav-item logout" href="index.html">
+<span>↪</span>
                 Logout
             </a>
-
-        </div>
-
-    </aside>
-
-
-
-    <!-- ================================
+</div>
+</aside>
+<!-- ================================
          MAIN CONTENT
     ================================= -->
-
-    <main class="main-content">
-
-
-        <!-- TOPBAR -->
-
-        <header class="topbar">
-
-            <button
-                class="mobile-menu"
-                id="mobileMenu"
-            >
+<main class="main-content">
+<!-- TOPBAR -->
+<header class="topbar">
+<button class="mobile-menu" id="mobileMenu">
                 ☰
             </button>
-
-
-            <div class="topbar-right">
-
-                <button class="notification-button">
+<div class="topbar-right">
+<button class="notification-button">
                     🔔
                 </button>
-
-
-                <div class="profile">
-
-                    <div class="profile-avatar">
+<div class="profile">
+<div class="profile-avatar">
                         N
                     </div>
-
-
-                    <div class="profile-info">
-
-                        <strong class="user-name">
+<div class="profile-info">
+<strong class="user-name">
     User
 </strong>
-
-                        <small>
+<small>
                             Student
                         </small>
-
-                    </div>
-
-
-                    <span class="profile-arrow">
+</div>
+<span class="profile-arrow">
                         ▼
                     </span>
-
-                </div>
-
-            </div>
-
-        </header>
-
-
-
-        <!-- ================================
+</div>
+</div>
+</header>
+<!-- ================================
              PAGE CONTENT
         ================================= -->
-
-        <div class="page-content">
-
-
-            <!-- PAGE HEADER -->
-
-            <section class="page-header">
-
-                <div>
-
-                    <p class="date-text">
-                        AUGUST 2026
-                    </p>
-
-
-                    <h1>
+<div class="page-content">
+<!-- PAGE HEADER -->
+<section class="page-header">
+<div>
+<p class="date-text">
+<span data-current-month-uppercase="">Current month</span>
+</p>
+<h1>
                         Reports
                     </h1>
-
-
-                    <p>
+<p>
                         Understand your spending and make
                         smarter financial decisions.
                     </p>
-
-                </div>
-
-
-                <select
-                    class="month-selector"
-                    id="monthSelector"
-                >
-
-                    <option value="august">
-                        August 2026
-                    </option>
-
-                    <option value="july">
-                        July 2026
-                    </option>
-
-                    <option value="june">
-                        June 2026
-                    </option>
-
-                </select>
-
-            </section>
-
-
-
-            <!-- ================================
+</div>
+<select aria-label="Report month" class="month-selector" id="monthSelector">
+<option value="">Current month</option>
+</select>
+</section>
+<!-- ================================
                  SUMMARY CARDS
             ================================= -->
-
-            <section class="report-summary">
-
-
-                <div class="summary-card">
-
-                    <div class="summary-icon income">
+<section class="report-summary">
+<div class="summary-card">
+<div class="summary-icon income">
                         ↑
                     </div>
-
-                    <div>
-
-                        <p>
+<div>
+<p>
                             Total Income
                         </p>
-
-                        <h2 id="reportIncome">
-                            ₹15,000
+<h2 id="reportIncome">
+                            ₹0
                         </h2>
-
-                        <span class="summary-note positive" id="reportIncomeNote">
+<span class="summary-note positive" id="reportIncomeNote">
                             Monthly allowance
                         </span>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="summary-card">
-
-                    <div class="summary-icon expense">
+</div>
+</div>
+<div class="summary-card">
+<div class="summary-icon expense">
                         ↓
                     </div>
-
-                    <div>
-
-                        <p>
+<div>
+<p>
                             Total Expenses
                         </p>
-
-                        <h2 id="reportExpenses">
-                            ₹8,450
+<h2 id="reportExpenses">
+                            ₹0
                         </h2>
-
-                        <span class="summary-note" id="reportExpensesNote">
-                            56.3% of income
+<span class="summary-note" id="reportExpensesNote">
+                            0% of income
                         </span>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="summary-card">
-
-                    <div class="summary-icon balance">
+</div>
+</div>
+<div class="summary-card">
+<div class="summary-icon balance">
                         ₹
                     </div>
-
-                    <div>
-
-                        <p>
+<div>
+<p>
                             Remaining
                         </p>
-
-                        <h2 id="reportRemaining">
-                            ₹6,550
+<h2 id="reportRemaining">
+                            ₹0
                         </h2>
-
-                        <span class="summary-note positive" id="reportRemainingNote">
+<span class="summary-note positive" id="reportRemainingNote">
                             You're on track
                         </span>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="summary-card">
-
-                    <div class="summary-icon savings">
+</div>
+</div>
+<div class="summary-card">
+<div class="summary-icon savings">
                         %
                     </div>
-
-                    <div>
-
-                        <p>
+<div>
+<p>
                             Savings Rate
                         </p>
-
-                        <h2 id="reportSavingsRate">
-                            43.7%
+<h2 id="reportSavingsRate">
+                            0%
                         </h2>
-
-                        <span class="summary-note positive" id="reportSavingsNote">
+<span class="summary-note positive" id="reportSavingsNote">
                             Good progress
                         </span>
-
-                    </div>
-
-                </div>
-
-
-            </section>
-
-
-
-            <!-- ================================
+</div>
+</div>
+</section>
+<!-- ================================
                  SPENDING OVERVIEW
             ================================= -->
-
-            <section class="report-grid">
-
-
-                <!-- CATEGORY BREAKDOWN -->
-
-                <div class="report-card category-report">
-
-                    <div class="card-header">
-
-                        <div>
-
-                            <h2>
+<section class="report-grid">
+<!-- CATEGORY BREAKDOWN -->
+<div class="report-card category-report">
+<div class="card-header">
+<div>
+<h2>
                                 Spending by Category
                             </h2>
-
-                            <p>
+<p>
                                 Where your money went this month.
                             </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="category-list" id="reportCategoryList">
-
-
-                        <!-- FOOD -->
-
-                        <div class="report-category">
-
-                            <div class="category-row">
-
-                                <div class="category-name">
-
-                                    <span class="category-icon food">
-                                        🍔
-                                    </span>
-
-                                    <div>
-
-                                        <strong>
-                                            Food
-                                        </strong>
-
-                                        <small>
-                                            ₹2,800
-                                        </small>
-
-                                    </div>
-
-                                </div>
-
-                                <strong>
-                                    33.1%
-                                </strong>
-
-                            </div>
-
-
-                            <div class="report-progress">
-
-                                <div
-                                    class="report-progress-fill food-fill"
-                                    style="width: 33.1%;"
-                                ></div>
-
-                            </div>
-
-                        </div>
-
-
-
-                        <!-- TRANSPORT -->
-
-                        <div class="report-category">
-
-                            <div class="category-row">
-
-                                <div class="category-name">
-
-                                    <span class="category-icon transport">
-                                        🚗
-                                    </span>
-
-                                    <div>
-
-                                        <strong>
-                                            Transport
-                                        </strong>
-
-                                        <small>
-                                            ₹1,500
-                                        </small>
-
-                                    </div>
-
-                                </div>
-
-                                <strong>
-                                    17.8%
-                                </strong>
-
-                            </div>
-
-
-                            <div class="report-progress">
-
-                                <div
-                                    class="report-progress-fill transport-fill"
-                                    style="width: 17.8%;"
-                                ></div>
-
-                            </div>
-
-                        </div>
-
-
-
-                        <!-- EDUCATION -->
-
-                        <div class="report-category">
-
-                            <div class="category-row">
-
-                                <div class="category-name">
-
-                                    <span class="category-icon education">
-                                        📚
-                                    </span>
-
-                                    <div>
-
-                                        <strong>
-                                            Education
-                                        </strong>
-
-                                        <small>
-                                            ₹700
-                                        </small>
-
-                                    </div>
-
-                                </div>
-
-                                <strong>
-                                    8.3%
-                                </strong>
-
-                            </div>
-
-
-                            <div class="report-progress">
-
-                                <div
-                                    class="report-progress-fill education-fill"
-                                    style="width: 8.3%;"
-                                ></div>
-
-                            </div>
-
-                        </div>
-
-
-
-                        <!-- SHOPPING -->
-
-                        <div class="report-category">
-
-                            <div class="category-row">
-
-                                <div class="category-name">
-
-                                    <span class="category-icon shopping">
-                                        🛒
-                                    </span>
-
-                                    <div>
-
-                                        <strong>
-                                            Shopping
-                                        </strong>
-
-                                        <small>
-                                            ₹450
-                                        </small>
-
-                                    </div>
-
-                                </div>
-
-                                <strong>
-                                    5.3%
-                                </strong>
-
-                            </div>
-
-
-                            <div class="report-progress">
-
-                                <div
-                                    class="report-progress-fill shopping-fill"
-                                    style="width: 5.3%;"
-                                ></div>
-
-                            </div>
-
-                        </div>
-
-
-
-                        <!-- ENTERTAINMENT -->
-
-                        <div class="report-category">
-
-                            <div class="category-row">
-
-                                <div class="category-name">
-
-                                    <span class="category-icon entertainment">
-                                        🎮
-                                    </span>
-
-                                    <div>
-
-                                        <strong>
-                                            Entertainment
-                                        </strong>
-
-                                        <small>
-                                            ₹350
-                                        </small>
-
-                                    </div>
-
-                                </div>
-
-                                <strong>
-                                    4.1%
-                                </strong>
-
-                            </div>
-
-
-                            <div class="report-progress">
-
-                                <div
-                                    class="report-progress-fill entertainment-fill"
-                                    style="width: 4.1%;"
-                                ></div>
-
-                            </div>
-
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- SPENDING HEALTH -->
-
-                <div class="report-card health-report">
-
-                    <div class="card-header">
-
-                        <div>
-
-                            <h2>
+</div>
+</div>
+<div class="category-list" id="reportCategoryList"></div>
+</div>
+</section></div>
+
+<!-- SPENDING HEALTH -->
+<div class="report-card health-report">
+<div class="card-header">
+<div>
+<h2>
                                 Spending Health
                             </h2>
-
-                            <p>
+<p>
                                 Your financial status this month.
                             </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="health-circle" id="healthCircle">
-
-                        <div class="health-inner">
-
-                            <strong id="healthScore">
-                                87
+</div>
+</div>
+<div class="health-circle" id="healthCircle">
+<div class="health-inner">
+<strong id="healthScore">
+                                0
                             </strong>
-
-                            <span>
+<span>
                                 / 100
                             </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <h3 id="healthHeading">
+</div>
+</div>
+<h3 id="healthHeading">
                         Good financial health
                     </h3>
-
-
-                    <p class="health-description" id="healthDescription">
+<p class="health-description" id="healthDescription">
 
                         You're spending within your limits
                         and maintaining a healthy amount
                         of savings.
 
                     </p>
-
-
-                    <div class="health-stats">
-
-                        <div>
-
-                            <span>
+<div class="health-stats">
+<div>
+<span>
                                 Budget used
                             </span>
-
-                            <strong id="healthBudgetUsed">
-                                56.3%
+<strong id="healthBudgetUsed">
+                                0%
                             </strong>
-
-                        </div>
-
-
-                        <div>
-
-                            <span>
+</div>
+<div>
+<span>
                                 Savings
                             </span>
-
-                            <strong id="healthSavings">
-                                43.7%
+<strong id="healthSavings">
+                                0%
                             </strong>
-
-                        </div>
-
-
-                        <div>
-
-                            <span>
+</div>
+<div>
+<span>
                                 Daily average
                             </span>
-
-                            <strong id="healthDailyAverage">
-                                ₹313
+<strong id="healthDailyAverage">
+                                ₹0
                             </strong>
+</div>
+</div>
+</div>
 
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- ================================
+<!-- ================================
                  MONTHLY SPENDING
             ================================= -->
-
-            <section class="report-card monthly-report">
-
-                <div class="card-header">
-
-                    <div>
-
-                        <h2>
+<section class="report-card monthly-report">
+<div class="card-header">
+<div>
+<h2>
                             Monthly Spending
                         </h2>
-
-                        <p>
+<p>
                             Your spending over the last six months.
                         </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="bar-chart">
-
-
-                    <div class="chart-column">
-
-                        <div class="bar-value">
-                            ₹6.2k
-                        </div>
-
-                        <div
-                            class="bar"
-                            style="height: 45%;"
-                        ></div>
-
-                        <span>
-                            Mar
-                        </span>
-
-                    </div>
-
-
-                    <div class="chart-column">
-
-                        <div class="bar-value">
-                            ₹7.1k
-                        </div>
-
-                        <div
-                            class="bar"
-                            style="height: 52%;"
-                        ></div>
-
-                        <span>
-                            Apr
-                        </span>
-
-                    </div>
-
-
-                    <div class="chart-column">
-
-                        <div class="bar-value">
-                            ₹6.8k
-                        </div>
-
-                        <div
-                            class="bar"
-                            style="height: 49%;"
-                        ></div>
-
-                        <span>
-                            May
-                        </span>
-
-                    </div>
-
-
-                    <div class="chart-column">
-
-                        <div class="bar-value">
-                            ₹7.5k
-                        </div>
-
-                        <div
-                            class="bar"
-                            style="height: 55%;"
-                        ></div>
-
-                        <span>
-                            Jun
-                        </span>
-
-                    </div>
-
-
-                    <div class="chart-column">
-
-                        <div class="bar-value">
-                            ₹7.9k
-                        </div>
-
-                        <div
-                            class="bar"
-                            style="height: 58%;"
-                        ></div>
-
-                        <span>
-                            Jul
-                        </span>
-
-                    </div>
-
-
-                    <div class="chart-column current">
-
-                        <div class="bar-value">
-                            ₹8.45k
-                        </div>
-
-                        <div
-                            class="bar"
-                            style="height: 65%;"
-                        ></div>
-
-                        <span>
-                            Aug
-                        </span>
-
-                    </div>
-
-
-                </div>
-
-            </section>
-
-
-
-            <!-- ================================
+</div>
+</div>
+<div class="bar-chart" id="monthlySpendingChart">
+<!-- Generated from the logged-in user's expense history. -->
+</div>
+</section>
+<!-- ================================
      INSIGHTS
 ================================= -->
-
 <section class="insights-section">
-
-    <div class="section-heading">
-
-        <p class="section-label">
+<div class="section-heading">
+<p class="section-label">
             INSIGHTS
         </p>
-
-        <h2>
+<h2>
             What your spending says
         </h2>
-
-    </div>
-
-
-    <div class="insight-grid">
-
-
-        <!-- BIGGEST CATEGORY -->
-
-        <div class="insight-card">
-
-            <div class="insight-icon" id="insightCategoryIcon">
+</div>
+<div class="insight-grid">
+<!-- BIGGEST CATEGORY -->
+<div class="insight-card">
+<div class="insight-icon" id="insightCategoryIcon">
                 📊
             </div>
-
-            <div>
-
-                <h3 id="insightCategoryTitle">
+<div>
+<h3 id="insightCategoryTitle">
                     Analyzing your spending...
                 </h3>
-
-                <p id="insightCategoryText">
+<p id="insightCategoryText">
                     Add some expenses to generate personalized insights.
                 </p>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- BUDGET -->
-
-        <div class="insight-card">
-
-            <div class="insight-icon">
+</div>
+</div>
+<!-- BUDGET -->
+<div class="insight-card">
+<div class="insight-icon">
                 💰
             </div>
-
-            <div>
-
-                <h3 id="insightBudgetTitle">
+<div>
+<h3 id="insightBudgetTitle">
                     Analyzing your budget...
                 </h3>
-
-                <p id="insightBudgetText">
+<p id="insightBudgetText">
                     Your budget insight will appear here.
                 </p>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- DAILY SPENDING -->
-
-        <div class="insight-card">
-
-            <div class="insight-icon">
+</div>
+</div>
+<!-- DAILY SPENDING -->
+<div class="insight-card">
+<div class="insight-icon">
                 🎯
             </div>
-
-            <div>
-
-                <h3 id="insightDailyTitle">
+<div>
+<h3 id="insightDailyTitle">
                     Analyzing your spending...
                 </h3>
-
-                <p id="insightDailyText">
+<p id="insightDailyText">
                     Your daily spending insight will appear here.
                 </p>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
+</div>
+</div>
+</div>
 </section>
 
-
-        </div>
-
-    </main>
-
-
-    <script src="js/data.js"></script>
+</main>
+<script src="js/data.js"></script>
 <script src="js/reports.js"></script>
-
 <script src="js/session.js"></script>
+<script src="js/theme.js"></script>
 </body>
-
 </html>

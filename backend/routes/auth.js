@@ -30,7 +30,11 @@ router.post("/register", async (req, res) => {
             });
         }
 
-        if (String(password).length < 6) {
+        if (String(name).trim().length > 100 || String(college).trim().length > 150) {
+            return res.status(400).json({ success: false, message: "Name or college is too long" });
+        }
+
+        if (String(password).length < 6 || String(password).length > 128) {
             return res.status(400).json({
                 success: false,
                 message: "Password must be at least 6 characters"
@@ -38,9 +42,15 @@ router.post("/register", async (req, res) => {
         }
 
         const normalizedEmail = String(email).trim().toLowerCase();
-        const budget = Number(monthly_budget) || 15000;
+        const budget = monthly_budget === "" || monthly_budget === undefined || monthly_budget === null
+            ? 15000
+            : Number(monthly_budget);
 
-        if (budget < 0) {
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail) || normalizedEmail.length > 255) {
+            return res.status(400).json({ success: false, message: "Please provide a valid email address" });
+        }
+
+        if (!Number.isFinite(budget) || budget <= 0 || budget > 100000000) {
             return res.status(400).json({
                 success: false,
                 message: "Monthly budget cannot be negative"

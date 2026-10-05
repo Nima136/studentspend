@@ -3,14 +3,13 @@
 // Reads through data.js so this page shares the SAME
 // storage as Dashboard, Expenses, and Budget.
 //
-// NOTE: The "Monthly Spending" 6-month bar chart and the
-// "Insights" cards further down the page stay as static
-// placeholder content, since the app only tracks a flat
-// list of expenses (no month-by-month history yet) to
-// build a real multi-month trend from.
+// The six-month chart and report insights are generated from the
+// authenticated user's stored expense history.
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("[data-current-month]").forEach(el => el.textContent = formatMonthYear());
+    document.querySelectorAll("[data-current-month-uppercase]").forEach(el => el.textContent = formatMonthYear(new Date(), { uppercase: true }));
 
     const mobileMenu =
         document.getElementById("mobileMenu");
@@ -35,24 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     if (monthSelector) {
-
-        monthSelector.addEventListener("change", () => {
-
-            console.log(
-                "Selected month:",
-                monthSelector.value
-            );
-
-            /*
-                Later we will filter data.js's expenses by
-                month here. Right now the report always
-                reflects all stored expenses.
-            */
-
-        });
-
+        populateMonthSelector(monthSelector);
+        monthSelector.addEventListener("change", updateReportsPage);
     }
-
 
     updateReportsPage();
 
@@ -68,6 +52,21 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+function populateMonthSelector(select) {
+    const current = getMonthKey();
+    const options = Array.from({ length: 6 }, (_, index) => {
+        const key = getMonthKeyOffset(-index);
+        const date = parseMonthKey(key);
+        return { key, label: formatMonthYear(date) };
+    });
+
+    select.innerHTML = options.map(option =>
+        `<option value="${option.key}">${option.label}</option>`
+    ).join("");
+
+    select.value = current;
+}
+
 // ==========================================
 // UPDATE ENTIRE REPORTS PAGE
 // ==========================================
@@ -80,8 +79,18 @@ function updateReportsPage() {
     const budget =
         Number(data.budget) || 0;
 
+    const monthSelector = document.getElementById("monthSelector");
+    const selectedMonth = monthSelector
+        ? monthSelector.value
+        : getMonthKey();
+
     const expenses =
-        data.expenses || [];
+        getExpensesForMonth(data.expenses || [], selectedMonth);
+
+    const reportMonthLabel = document.querySelector(".page-header .date-text");
+    if (reportMonthLabel) {
+        reportMonthLabel.textContent = formatMonthYear(parseMonthKey(selectedMonth), { uppercase: true });
+    }
 
     const spent =
         getTotalSpent(expenses);
@@ -109,6 +118,7 @@ function updateReportsPage() {
 );
 
 updateCategoryReport(expenses);
+updateMonthlySpendingChart(data.expenses || []);
 
 updateHealthReport(
     budget,
@@ -274,6 +284,35 @@ function updateCategoryReport(expenses) {
 
 }
 
+
+function updateMonthlySpendingChart(allExpenses) {
+    const container = document.getElementById("monthlySpendingChart");
+    if (!container) return;
+
+    const months = Array.from({ length: 6 }, (_, index) => {
+        const key = getMonthKeyOffset(index - 5);
+        const date = parseMonthKey(key);
+        const spent = getTotalSpent(getExpensesForMonth(allExpenses, key));
+        return { key, date, spent };
+    });
+
+    const maxSpent = Math.max(...months.map(month => month.spent), 1);
+
+    container.innerHTML = months.map(month => {
+        const height = month.spent > 0 ? Math.max(4, (month.spent / maxSpent) * 100) : 0;
+        const label = month.date.toLocaleDateString("en-IN", { month: "short" });
+        const value = month.spent > 0 ? formatCurrency(month.spent) : "₹0";
+        const currentClass = month.key === getMonthKey() ? " current" : "";
+
+        return `
+            <div class="chart-column${currentClass}">
+                <div class="bar-value">${value}</div>
+                <div class="bar" style="height: ${height}%;"></div>
+                <span>${label}</span>
+            </div>
+        `;
+    }).join("");
+}
 
 // ==========================================
 // SPENDING HEALTH

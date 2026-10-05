@@ -12,6 +12,12 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
+    const dateInput = document.getElementById("expenseDate");
+    if (dateInput && !dateInput.value) {
+        const today = new Date();
+        dateInput.value = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+    }
+
     const mobileMenu =
         document.getElementById("mobileMenu");
 
